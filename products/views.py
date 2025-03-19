@@ -12,6 +12,7 @@ def product_list(request):
         products = Product.objects.all()
         paginator = PageNumberPagination()
         paginator.page_size = 10
+
         paginated_products = paginator.paginate_queryset(products, request)
         serializer = ProductSerializer(paginated_products, many=True)
         return paginator.get_paginated_response(serializer.data)
